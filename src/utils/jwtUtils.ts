@@ -1,8 +1,6 @@
-// src/utils/jwtUtils.ts
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = 'your-secret-key'; // Replace with a secure secret key
-
+const JWT_SECRET = 'theKey'; 
 const jwtUtils = {
   generateToken: (userId: string) => {
     // Create a JWT with the user's unique identifier (userID) as the payload
