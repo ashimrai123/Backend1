@@ -1,22 +1,17 @@
 import express from 'express';
-import authRoutes from './routes/authRoutes';
-import bodyParser from 'body-parser';
+import dotenv from 'dotenv';
+import taskRoutes from './routers/taskRoutes';
+import userRouter from './routers/userRoutes';
+
+dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 8000;
 
-// Middleware to parse JSON requests
-app.use(bodyParser.json());
+app.use(express.json());
+app.use(taskRoutes);
+app.use(userRouter);
 
-// Use the auth routes
-app.use('/auth', authRoutes);
-
-// Default route
-app.get('/', (req, res) => {
-  res.send('Welcome to the Todo App!');
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.listen(PORT,() => {
+    console.log(`Server is running on PORT ${PORT}`);
+})
